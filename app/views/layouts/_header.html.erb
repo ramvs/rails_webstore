@@ -1,4 +1,4 @@
-<nav class="navbar navbar-fixed-top navbar-default" role="navigation">
+<nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapsable">
@@ -12,14 +12,20 @@
     </div>
     <div class="collapse navbar-collapse" id="navbar-collapsable">
       <ul class="nav navbar-nav foo" id="menu">
-        <p class="navbar-text">Select:</p>
         <li><%=link_to 'Home', root_path%></li>
         <li><%=link_to 'Products', products_path%></li>
 
       </ul>
       <ul class="nav navbar-nav navbar-right" align="right">
-        <li><a href="/logout">Log Out</a></li>
-      </ul>
+
+        <li class="cart-text"><%= render 'layouts/cart_text' %></li>
+        <% if user_signed_in? %>
+        <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %> </li>
+        <% else %>
+          <li><%= link_to "Sign up", new_user_registration_path %></li>
+          <li><%= link_to "Login in", new_user_session_path %> </li> 
+        <%end%>
+        </ul>
     </div>
   </div>
 </nav>
