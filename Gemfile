@@ -27,15 +27,30 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
-# gem 'unicorn'
+#gem 'unicorn'
 
+#Thin app server
+gem 'thin'
+#Devise for auth user
+gem 'devise'
+#Image upload
+gem "paperclip", "~> 4.3"
+#Bootstrap
+gem "therubyracer"
+gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem "twitter-bootstrap-rails"
+#Font-awsome
+gem "font-awesome-rails"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'pry'
 end
+
+
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
