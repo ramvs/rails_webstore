@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  resources :shipping_addresses
+  resources :shipping_addresses
+  get 'shipping_address/create'
+
+  get 'shipping_address/update'
+
+  get 'shipping_address/destroy'
+
+  get 'shipping_address/edit'
+
+  get 'shipping_address/new'
+
   get 'order_items/create'
 
   get 'order_items/update'
@@ -8,9 +20,14 @@ Rails.application.routes.draw do
   get 'carts/show'
 
   devise_for :users
+  resources :users, only: [:show]
   resources :products
   resource :cart, only: [:show]
   resources :order_items, only: [:create, :update, :destroy]
+  resources :shipping_addresses
+  resources :users do
+    resources :shipping_addresses
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

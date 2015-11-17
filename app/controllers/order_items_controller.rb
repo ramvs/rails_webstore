@@ -2,12 +2,24 @@ class OrderItemsController < ApplicationController
   def create
     @order = current_order
     @order_item = @order.order_items.new(order_item_params)
-    @order.save
+    if user_signed_in?
+      unless current_user.order.present?
+        @order.user_id = current_user.id
+        current_user.order = @order
+      end
+    end
+    @order.save!
     session[:order_id] = @order.id
+
   end
 
   def update
     @order = current_order
+    if user_signed_in?
+      unless current_user.order.present?
+        @order.user_id = current_user.id
+      end
+    end
     @order_item = @order.order_items.find(params[:id])
     @order_item.update_attributes(order_item_params)
     @order_items = @order.order_items
